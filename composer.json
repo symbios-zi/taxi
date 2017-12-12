@@ -3,6 +3,7 @@
     "license": "proprietary",
     "require": {
         "php": "^7.1.3",
+        "phpspec/phpspec": "^4.2",
         "symfony/console": "^4.0",
         "symfony/flex": "^1.0",
         "symfony/framework-bundle": "^4.0",

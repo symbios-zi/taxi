@@ -65,6 +65,24 @@
     "ocramius/proxy-manager": {
         "version": "2.1.1"
     },
+    "phpdocumentor/reflection-common": {
+        "version": "1.0.1"
+    },
+    "phpdocumentor/reflection-docblock": {
+        "version": "4.2.0"
+    },
+    "phpdocumentor/type-resolver": {
+        "version": "0.4.0"
+    },
+    "phpspec/php-diff": {
+        "version": "v1.1.0"
+    },
+    "phpspec/phpspec": {
+        "version": "4.2.5"
+    },
+    "phpspec/prophecy": {
+        "version": "1.7.3"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -76,6 +94,18 @@
     },
     "psr/simple-cache": {
         "version": "1.0.0"
+    },
+    "sebastian/comparator": {
+        "version": "2.1.0"
+    },
+    "sebastian/diff": {
+        "version": "2.0.1"
+    },
+    "sebastian/exporter": {
+        "version": "3.1.0"
+    },
+    "sebastian/recursion-context": {
+        "version": "3.0.0"
     },
     "symfony/cache": {
         "version": "v4.0.1"
@@ -149,6 +179,9 @@
     "symfony/polyfill-mbstring": {
         "version": "v1.6.0"
     },
+    "symfony/process": {
+        "version": "v4.0.1"
+    },
     "symfony/routing": {
         "version": "3.3",
         "recipe": {
@@ -160,6 +193,9 @@
     },
     "symfony/yaml": {
         "version": "v4.0.1"
+    },
+    "webmozart/assert": {
+        "version": "1.2.0"
     },
     "zendframework/zend-code": {
         "version": "3.3.0"

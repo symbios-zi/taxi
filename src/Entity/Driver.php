@@ -21,31 +21,17 @@ class Driver
      */
     private $phone;
 
-
     /**
-     * Apply request of journey from client
+     * Driver constructor.
+     * @param string $name
+     * @param string $car
+     * @param string $phone
      */
-    public function applyJourney()
+    public function __construct(string $name, string $car, string $phone)
     {
-
-    }
-
-
-    /**
-     * Cancel request of journey
-     */
-    public function cancelJourney()
-    {
-
-    }
-
-
-    /**
-     * Finish journey
-     */
-    public function finishJourney()
-    {
-
+        $this->name = $name;
+        $this->car = $car;
+        $this->phone = $phone;
     }
 
 
