@@ -16,28 +16,15 @@ class Passenger
     private $phone;
 
     /**
-     * Create a new request of journey
+     * Passenger constructor.
+     * @param string $name
+     * @param string $phone
      */
-    public function createJourney()
+    public function __construct(string $name, string $phone)
     {
-
+        $this->name = $name;
+        $this->phone = $phone;
     }
 
-
-    /**
-     * Cancel request of journey
-     */
-    public function cancelJourney()
-    {
-
-    }
-
-    /**
-     * Add a new destination of journey
-     */
-    public function addNewDestination()
-    {
-
-    }
 
 }
