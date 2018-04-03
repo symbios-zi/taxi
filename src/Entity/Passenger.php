@@ -26,5 +26,10 @@ class Passenger
         $this->phone = $phone;
     }
 
+    public function orderJourney()
+    {
+        
+    }
+
 
 }

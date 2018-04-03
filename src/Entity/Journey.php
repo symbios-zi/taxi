@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
-use App\ValueObject\Location;
+use App\Entity\Location;
+use App\Service\DistanceManager;
+use App\Service\JourneyPriceCalculator;
 use DateTimeImmutable;
 
 class Journey
@@ -62,11 +64,17 @@ class Journey
      */
     private $finishedAt;
 
+    /**
+     * Journey constructor.
+     * @param Passenger $passenger
+     * @param \App\Entity\Location $point
+     * @param \App\Entity\Location $destination
+     */
     public function __construct(Passenger $passenger, Location $point, Location $destination)
     {
         $this->passenger = $passenger;
-        $this->point = (string) $point;
-        $this->destination = (string) $destination;
+        $this->point = $point;
+        $this->destination = $destination;
         $this->status = self::IN_SEARCH;
     }
 
@@ -104,5 +112,11 @@ class Journey
     {
         $this->status = self::PROCESSING;
         $this->startedAt = new DateTimeImmutable("now");
+    }
+
+    public function getEstimatedPrice()
+    {
+        return (new DistanceManager())->getDrivingDistance($this->point, $this->destination);
+        //return (new JourneyPriceCalculator($distance, $time))->getPrice();
     }
 }
