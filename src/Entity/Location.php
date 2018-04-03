@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ValueObject;
+namespace App\Entity;
 
 use InvalidArgumentException;
 
@@ -21,7 +21,7 @@ class Location
      * @param $longitude
      * @param $latitude
      */
-    public function __construct(float $longitude, float $latitude)
+    public function __construct(float $latitude, float $longitude)
     {
 
         if( ! preg_match('/^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/', $latitude)) {
