@@ -39,7 +39,6 @@ class JourneyController extends Controller
             new Location($destination[0], $destination[1])
         );
 
-
         $journey = new Journey($routes);
 
         return new Response('Welcome to your new controller!');
