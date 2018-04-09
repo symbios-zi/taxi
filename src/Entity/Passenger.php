@@ -26,9 +26,24 @@ class Passenger
         $this->phone = $phone;
     }
 
-    public function orderJourney()
+    /**
+     * @param Location $point
+     * @param Location $destination
+     * @return Journey
+     */
+    public function requestJourney(Location $point, Location $destination)
     {
-        
+        return (new Journey($point, $destination));
+
+    }
+
+    /**
+     * @param Location $point
+     * @param Location $destination
+     */
+    public function orderJourney(Location $point, Location $destination)
+    {
+         (new Journey($point, $destination))->start();
     }
 
 
