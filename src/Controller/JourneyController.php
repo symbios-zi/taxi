@@ -42,8 +42,6 @@ class JourneyController extends Controller
 
         $journey = new Journey($routes);
 
-        dump($journey);
-
         return new Response('Welcome to your new controller!');
     }
 
