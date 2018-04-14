@@ -21,4 +21,4 @@ security:
 
     access_control:
     - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/journey, roles: ROLE_ADMIN }
+    - { path: ^/journey, roles: IS_AUTHENTICATED_ANONYMOUSLY }
