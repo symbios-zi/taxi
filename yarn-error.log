@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js run encore dev --watch
+  /usr/bin/node /usr/share/yarn/bin/yarn.js run encore dev
 
 PATH: 
   /home/symbios/bin:/home/symbios/.local/bin:/home/symbios/bin:/home/symbios/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
@@ -21,7 +21,11 @@ npm manifest:
       "sass-loader": "^6.0.7",
       "vue": "^2.5.16",
       "vue-loader": "^14.2.2",
-      "vue-template-compiler": "^2.5.16"
+      "vue-template-compiler": "^2.5.16",
+      "webpack-notifier": "^1.6.0"
+    },
+    "dependencies": {
+      "vue2-autocomplete-js": "^0.2.2"
     }
   }
 
@@ -2399,6 +2403,10 @@ Lockfile:
     version "4.1.11"
     resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
   
+  growly@^1.3.0:
+    version "1.3.0"
+    resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
+  
   handle-thing@^1.2.5:
     version "1.2.5"
     resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-1.2.5.tgz#fd7aad726bf1a5fd16dfc29b2f7a6601d27139c4"
@@ -3576,6 +3584,15 @@ Lockfile:
       url "^0.11.0"
       util "^0.10.3"
       vm-browserify "0.0.4"
+  
+  node-notifier@^5.1.2:
+    version "5.2.1"
+    resolved "https://registry.yarnpkg.com/node-notifier/-/node-notifier-5.2.1.tgz#fa313dd08f5517db0e2502e5758d664ac69f9dea"
+    dependencies:
+      growly "^1.3.0"
+      semver "^5.4.1"
+      shellwords "^0.1.1"
+      which "^1.3.0"
   
   node-pre-gyp@^0.6.39:
     version "0.6.39"
@@ -4773,7 +4790,7 @@ Lockfile:
     dependencies:
       node-forge "0.7.1"
   
-  "semver@2 || 3 || 4 || 5", semver@^5.3.0:
+  "semver@2 || 3 || 4 || 5", semver@^5.3.0, semver@^5.4.1:
     version "5.5.0"
     resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
   
@@ -4882,6 +4899,10 @@ Lockfile:
   shebang-regex@^1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
+  
+  shellwords@^0.1.1:
+    version "0.1.1"
+    resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   
   signal-exit@^3.0.0:
     version "3.0.2"
@@ -5544,7 +5565,13 @@ Lockfile:
     version "1.6.0"
     resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
   
-  vue@^2.5.16:
+  vue2-autocomplete-js@^0.2.2:
+    version "0.2.2"
+    resolved "https://registry.yarnpkg.com/vue2-autocomplete-js/-/vue2-autocomplete-js-0.2.2.tgz#b7a1882d978cb0925bb878d5ea0dd4755a261f95"
+    dependencies:
+      vue "^2.4.2"
+  
+  vue@^2.4.2, vue@^2.5.16:
     version "2.5.16"
     resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.16.tgz#07edb75e8412aaeed871ebafa99f4672584a0085"
   
@@ -5610,6 +5637,14 @@ Lockfile:
       webpack-dev-middleware "1.12.2"
       yargs "6.6.0"
   
+  webpack-notifier@^1.6.0:
+    version "1.6.0"
+    resolved "https://registry.yarnpkg.com/webpack-notifier/-/webpack-notifier-1.6.0.tgz#ffac8e55ff8c469752b8c1bbb011a16f10986e02"
+    dependencies:
+      node-notifier "^5.1.2"
+      object-assign "^4.1.0"
+      strip-ansi "^3.0.1"
+  
   webpack-sources@^1.0.1:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-1.1.0.tgz#a101ebae59d6507354d71d8013950a3a8b7a5a54"
@@ -5667,7 +5702,7 @@ Lockfile:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/which-module/-/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"
   
-  which@1, which@^1.2.9:
+  which@1, which@^1.2.9, which@^1.3.0:
     version "1.3.0"
     resolved "https://registry.yarnpkg.com/which/-/which-1.3.0.tgz#ff04bdfc010ee547d780bec38e1ac1c2777d253a"
     dependencies:
@@ -5793,9 +5828,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit code: 2
   Command: sh
-  Arguments: -c /var/www/taxi/node_modules/.bin/encore dev --watch
+  Arguments: -c /var/www/taxi/node_modules/.bin/encore dev
   Directory: /var/www/taxi
   Output:
   

@@ -15,6 +15,7 @@
         "symfony/maker-bundle": "^1.0",
         "symfony/orm-pack": "^1.0",
         "symfony/var-dumper": "^4.0",
+        "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "^4.0"
     },
     "require-dev": {

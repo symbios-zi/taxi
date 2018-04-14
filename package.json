@@ -7,5 +7,11 @@
     "vue-loader": "^14.2.2",
     "vue-template-compiler": "^2.5.16",
     "webpack-notifier": "^1.6.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.0",
+    "bootstrap-vue": "^2.0.0-rc.6",
+    "vue2-autocomplete-js": "^0.2.2"
   }
 }
