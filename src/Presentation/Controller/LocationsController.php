@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Application\Controller;
+namespace App\Presentation\Controller;
 
-use App\Service\Places;
+use App\Application\Service\PlacesManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class LocationsController extends Controller
 {
     /**
-     * @var Places
+     * @var PlacesManager
      */
     private $placesService;
 
@@ -19,7 +19,7 @@ class LocationsController extends Controller
      * LocationsController constructor.
      * @param $placesService
      */
-    public function __construct(Places $placesService)
+    public function __construct(PlacesManager $placesService)
     {
         $this->placesService = $placesService;
     }

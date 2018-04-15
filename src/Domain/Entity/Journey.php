@@ -2,7 +2,7 @@
 
 namespace App\Domain\Entity;
 
-use App\Service\JourneyPriceCalculator;
+use App\Domain\Service\JourneyPriceCalculator;
 use DateTimeImmutable;
 
 class Journey
