@@ -61,11 +61,13 @@
             handleSelectTo({place_id}) {
                 this.route.to = place_id
             },
-            requestJourneyInformation(data) {
-                axios.post('/journey', {
-                    from: data.from,
-                    to: data.to
-                })
+            requestJourneyInformation(route) {
+
+                const data = new FormData();
+                data.append('from', route.from);
+                data.append('to', route.to);
+
+                axios.post('/journey', data)
                     .then(function (response) {
                         console.log(response);
                     })
@@ -76,8 +78,8 @@
         },
         watch: {
             route: {
-                handler: function (val, oldVal) {
-                    this.requestJourneyInformation(val);
+                handler: function (route) {
+                    this.requestJourneyInformation(route);
                 },
                 deep: true
             }

@@ -43,7 +43,6 @@ class DistanceCalculator implements DistanceCalculatorInterface
         ]);
 
         $decodedResponse = json_decode((string) $response->getBody()->getContents(), true);
-
         $routes = $this->parseResponeToRouteValueObject($point, $destination, $decodedResponse);
 
         return $routes;

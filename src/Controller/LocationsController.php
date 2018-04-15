@@ -29,7 +29,7 @@ class LocationsController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function index(Request $request): JsonResponse
+    public function autocomplete(Request $request): JsonResponse
     {
         $searchString = $request->get('q');
         $response = $this->placesService->generateAutocomplete($searchString);
