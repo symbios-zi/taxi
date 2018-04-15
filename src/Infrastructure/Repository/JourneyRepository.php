@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Repository;
+namespace App\Infrastructure\Repository;
 
-use App\Entity\Driver;
+use App\Domain\Entity\Journey;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class DriverRepository extends ServiceEntityRepository
+class JourneyRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Driver::class);
+        parent::__construct($registry, Journey::class);
     }
 
     /*
     public function findBySomething($value)
     {
-        return $this->createQueryBuilder('d')
-            ->where('d.something = :value')->setParameter('value', $value)
-            ->orderBy('d.id', 'ASC')
+        return $this->createQueryBuilder('j')
+            ->where('j.something = :value')->setParameter('value', $value)
+            ->orderBy('j.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repository;
+namespace App\Infrastructure\Repository;
 
-use App\Entity\Passenger;
+use App\Domain\Entity\Passenger;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class PassangerRepository extends ServiceEntityRepository
+class PassengerRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
