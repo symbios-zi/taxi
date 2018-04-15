@@ -2,8 +2,8 @@
 
 namespace App\Service\DistanceCalculator;
 
-use App\Entity\Location;
-use App\Entity\Route;
+use App\Domain\Entity\Location;
+use App\Domain\Entity\Route;
 use GuzzleHttp\Client;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\Container;
@@ -27,7 +27,7 @@ class DistanceCalculator implements DistanceCalculatorInterface
     /**
      * @param Location $point
      * @param Location $destination
-     * @return \App\Entity\Route[]|array
+     * @return \App\Domain\Entity\Route[]|array
      */
     public function getRoutes(Location $point, Location $destination): array
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Application\Controller;
 
 use App\Service\Places;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Application\Controller;
 
-use App\Entity\Journey;
-use App\Entity\Location;
+use App\Domain\Entity\Journey;
+use App\Domain\Entity\Location;
 use App\Service\DistanceCalculator\DistanceCalculator;
 use App\Service\Places;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -51,7 +51,7 @@ class JourneyController extends Controller
 
     /**
      * @param Request $request
-     * @return \App\Entity\Route[]|array
+     * @return \App\Domain\Entity\Route[]|array
      */
     public function prepareRoutes(Request $request)
     {
@@ -65,6 +65,7 @@ class JourneyController extends Controller
             new Location($point[0], $point[1]),
             new Location($destination[0], $destination[1])
         );
+
         return $routes;
     }
 

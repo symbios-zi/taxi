@@ -3,8 +3,8 @@
 namespace App\Service\DistanceCalculator;
 
 
-use App\Entity\Location;
-use App\Entity\Route;
+use App\Domain\Entity\Location;
+use App\Domain\Entity\Route;
 
 interface DistanceCalculatorInterface
 {

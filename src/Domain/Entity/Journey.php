@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Domain\Entity;
 
 use App\Service\JourneyPriceCalculator;
 use DateTimeImmutable;

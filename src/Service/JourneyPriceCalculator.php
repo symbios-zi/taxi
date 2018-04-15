@@ -9,7 +9,7 @@
 namespace App\Service;
 
 
-use App\Entity\Route;
+use App\Domain\Entity\Route;
 
 class JourneyPriceCalculator
 {

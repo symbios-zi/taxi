@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Service;
-use App\Entity\Location;
+
 use GuzzleHttp\Client;
 
 class Places

@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Application\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class IndexController extends Controller
 {
