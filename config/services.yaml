@@ -20,11 +20,15 @@ services:
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    App\Application\Controller\:
-        resource: '../src/Application/Controller'
+    App\Presentation\Controller\:
+        resource: '../src/Presentation/Controller'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Service\DistanceCalculator\DistanceCalculatorInterface: '@App\Service\DistanceCalculator\DistanceCalculator'
+    App\Application\Service\PlacesManager:
+        autowire: true
+        arguments: ['@GuzzleHttp\Client']
+
+    GuzzleHttp\Client: ~

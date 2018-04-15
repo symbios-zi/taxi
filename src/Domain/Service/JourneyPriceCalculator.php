@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: symbios
- * Date: 04.04.18
- * Time: 0:02
- */
 
-namespace App\Service;
+namespace App\Domain\Service;
 
 
 use App\Domain\Entity\Route;
