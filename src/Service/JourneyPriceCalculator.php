@@ -9,8 +9,15 @@
 namespace App\Service;
 
 
+use App\Entity\Route;
+
 class JourneyPriceCalculator
 {
+
+    /**
+     * @var array
+     */
+    private $routes = [];
 
     /**
      * @var float
@@ -34,21 +41,35 @@ class JourneyPriceCalculator
 
     /**
      * JourneyPriceCalculator constructor.
-     * @param $distance
-     * @param $time
+     * @param array $routes
      */
-    public function __construct(float $distance, float $time)
+    public function __construct(array $routes)
     {
-        $this->distance = $distance;
-        $this->time = $time;
+        $this->routes = $routes;
     }
 
     /**
      * Calculates a price
      * @return float|int
      */
-    public function getPrice()
+    public function get()
     {
-        return $this->distance * $this->pricePerDistance + $this->time * $this->pricePerMinute;
+        $price = 0;
+        /** @var Route $route */
+        foreach ($this->routes as $route) {
+            $price += $this->applyFormula($route);
+        }
+
+        return $price;
+    }
+
+    /**
+     * @param $route
+     * @param $price
+     * @return float|int
+     */
+    public function applyFormula(Route $route)
+    {
+        return  $route->distance * $this->pricePerDistance + $route->duration * $this->pricePerMinute;
     }
 }

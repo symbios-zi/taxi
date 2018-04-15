@@ -32,8 +32,12 @@ class Route
      * @param $distance
      * @param $duration
      */
-    public function __construct(Location $point, Location $destination, $distance, $duration)
-    {
+    public function __construct(
+        Location $point,
+        Location $destination,
+        float $distance,
+        float $duration
+    ) {
         $this->point = $point;
         $this->destination = $destination;
         $this->distance = $distance;

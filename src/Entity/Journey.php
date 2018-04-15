@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Service\JourneyPriceCalculator;
 use DateTimeImmutable;
 
 class Journey
@@ -49,14 +50,15 @@ class Journey
      */
     private $routes;
 
+
     /**
      * Journey constructor.
      * @param array $routes
      */
     public function __construct(array $routes)
     {
-        $this->status = self::IN_SEARCH;
         $this->routes = $routes;
+        $this->price = (new JourneyPriceCalculator($routes))->get();
     }
 
     /**
