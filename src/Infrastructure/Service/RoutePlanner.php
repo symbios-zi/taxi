@@ -1,56 +1,55 @@
 <?php
 
-namespace App\Application\Service;
+namespace App\Infrastructure\Service;
 
 use App\Domain\Entity\Route;
 use App\Domain\Entity\Location;
-use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
-class PlacesManager
+class RoutePlanner
 {
-
     /**
-     * @var Client
+     * @var ClientInterface
      */
     private $client;
+    /**
+     * @var string
+     */
+    private $apiKey;
 
     /**
      * PlacesManager constructor.
-     * @param Client $client
+     * @param ClientInterface $client
+     * @param string $apiKey
      */
-    public function __construct(Client $client)
+    public function __construct(ClientInterface $client, string $apiKey)
     {
 
         $this->client = $client;
+        $this->apiKey = $apiKey;
     }
+
 
     /**
-     * Calculates a price
-     * @param string $searchString
-     * @return string
+     * @param array $places
+     * @return Route
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function generateAutocomplete(string $searchString): string
+    public function routeFor(array $places)
     {
-        $response = $this->client->request(
-            'GET',
-            'https://maps.googleapis.com/maps/api/place/autocomplete/json', [
-            "query" => [
-                'input' => $searchString,
-                'language' => 'ru',
-                'key' => 'AIzaSyDX4-hTcemB_2_IL-BR0YYgPHrHgx4Fjsw'
-
-            ]
-        ]);
-
-        return $response->getBody()->getContents();
+        return $this->measure(
+            $this->getDetailPlaceById($places[0]),
+            $this->getDetailPlaceById($places[1])
+        );
     }
-
 
     /**
      * @param string $placeId
      * @return Location
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getDetailPlaceById(string $placeId): Location
+    private function getDetailPlaceById(string $placeId): Location
     {
         $response = $this->client->request(
             'GET',
@@ -58,7 +57,7 @@ class PlacesManager
             "query" => [
                 'placeid' => $placeId,
                 'language' => 'ru',
-                'key' => 'AIzaSyDX4-hTcemB_2_IL-BR0YYgPHrHgx4Fjsw'
+                'key' => $this->apiKey
 
             ]
         ]);
@@ -75,8 +74,9 @@ class PlacesManager
      * @param Location $point
      * @param Location $destination
      * @return \App\Domain\Entity\Route
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getRoute(Location $point, Location $destination): Route
+    public function measure(Location $point, Location $destination): Route
     {
         $response = $this->client->request('GET', 'https://maps.googleapis.com/maps/api/distancematrix/json', [
             "query" => [
@@ -89,16 +89,16 @@ class PlacesManager
 
         $decodedResponse = json_decode((string) $response->getBody()->getContents(), true);
 
-        return $this->parseResponseToRouteValueObject($point, $destination, $decodedResponse);
+        return $this->build($point, $destination, $decodedResponse);
     }
 
     /**
      * @param Location $point
      * @param Location $destination
      * @param $decodedResponse
-     * @return mixed
+     * @return Route
      */
-    public function parseResponseToRouteValueObject(Location $point, Location $destination, $decodedResponse)
+    private function build(Location $point, Location $destination, $decodedResponse): Route
     {
         $route = [
             "point" => $point,
@@ -109,11 +109,6 @@ class PlacesManager
             "destination_address" => $decodedResponse["destination_addresses"][0],
         ];
 
-        return new Route(
-            $point,
-            $destination,
-            $route["distance"],
-            $route["duration"]
-        );
+        return new Route($point, $destination, $route["distance"], $route["duration"]);
     }
 }

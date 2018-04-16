@@ -2,10 +2,8 @@
 
 namespace App\Presentation\Controller;
 
-use App\Application\Service\PlacesManager;
-use App\Application\Service\JourneyService;
+use App\Infrastructure\Service\RoutePlanner;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -13,56 +11,33 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class JourneyController extends Controller
 {
     /**
-     * @var JourneyService
+     * @var RoutePlanner
      */
-    private $journeyService;
-
-    /**
-     * @var PlacesManager
-     */
-    private $placesManager;
+    private $routePlanner;
 
     /**
      * JourneyController constructor.
-     * @param JourneyService $journeyService
-     * @param PlacesManager $placesManager
+     * @param RoutePlanner $routePlanner
      */
-    public function __construct(JourneyService $journeyService, PlacesManager $placesManager)
+    public function __construct(RoutePlanner $routePlanner)
     {
-        $this->journeyService = $journeyService;
-        $this->placesManager = $placesManager;
+        $this->routePlanner = $routePlanner;
     }
 
     /**
      * @Route("/journey", name="journey")
      * @param Request $request
      * @return void
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function index(Request $request)
     {
-        $routes = $this->prepareRoutes($request);
+        $points = [
+            $request->get('from'),
+            $request->get('to'),
+        ];
 
-        $journey = $this->journeyService->request($routes);
-
-        dump($journey); die();
+        $route = $this->routePlanner->routeFor($points);
     }
-
-    /**
-     * @param Request $request
-     * @return array
-     */
-    public function prepareRoutes(Request $request)
-    {
-        $pointPlaceId = $request->get('from');
-        $destinationPlaceId = $request->get('to');
-
-        $point = $this->placesManager->getDetailPlaceById($pointPlaceId);
-        $destination = $this->placesManager->getDetailPlaceById($destinationPlaceId);
-
-        $routes[] = $this->placesManager->getRoute($point, $destination);
-
-        return $routes;
-    }
-
 
 }
