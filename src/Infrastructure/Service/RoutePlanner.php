@@ -100,11 +100,14 @@ class RoutePlanner
      */
     private function build(Location $point, Location $destination, $decodedResponse): Route
     {
+        $durationInSeconds = (float) $decodedResponse["rows"][0]["elements"][0]["duration"]["value"];
+        $distanceInMeters = (float) $decodedResponse["rows"][0]["elements"][0]["distance"]["value"];
+
         $route = [
             "point" => $point,
             "destination" => $destination,
-            "distance" => $decodedResponse["rows"][0]["elements"][0]["distance"]["value"],
-            "duration" => $decodedResponse["rows"][0]["elements"][0]["duration"]["value"],
+            "distance" => $distanceInMeters / 1000,
+            "duration" => $durationInSeconds / 60,
             "origin_address" => $decodedResponse["origin_addresses"][0],
             "destination_address" => $decodedResponse["destination_addresses"][0],
         ];

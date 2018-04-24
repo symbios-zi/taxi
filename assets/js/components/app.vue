@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-4 offset-md-4">
+        <div class="col-4 offset-md-2">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-center">Заказ такси</h5>
@@ -33,6 +33,25 @@
                 </div>
             </div>
         </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Ваша поездка:</h5>
+                    <div class="text">
+                        <span class="title">Стоимость: </span>
+                        <span>{{ journeyInfo.price }}</span>
+                    </div>
+                    <div class="text">
+                        <span class="title">Растояние: </span>
+                        <span>{{ journeyInfo.distance }}</span>
+                    </div>
+                    <div class="text">
+                        <span class="title">Примерное время: </span>
+                        <span>{{ journeyInfo.duration }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -48,7 +67,8 @@
                 route: {
                     from: null,
                     to: null
-                }
+                },
+                journeyInfo: {}
             }
         },
         methods: {
@@ -62,14 +82,16 @@
                 this.route.to = place_id
             },
             requestJourneyInformation(route) {
-
+                var self = this;
                 const data = new FormData();
                 data.append('from', route.from);
                 data.append('to', route.to);
 
                 axios.post('/journey', data)
                     .then(function (response) {
-                        console.log(response);
+                        self.journeyInfo = response.data;
+                    }).then(function () {
+
                     })
                     .catch(function (error) {
                         console.log(error);

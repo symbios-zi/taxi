@@ -45,14 +45,9 @@ class JourneyController extends Controller
         ];
 
         $routes[] = $this->routePlanner->routeFor($points);
-
         $estimatedJourney = new EstimatedJourney($routes);
 
-        $serializer = $this->buildSerializer();
-        $jsonContent = $serializer->serialize($estimatedJourney, 'json');
-
-        return new Response($jsonContent, 200);
-
+        return $this->prepareResponse($estimatedJourney);
     }
 
     /**
@@ -64,6 +59,20 @@ class JourneyController extends Controller
         $normalizers = [new ObjectNormalizer()];
         $serializer = new Serializer($normalizers, $encoders);
         return $serializer;
+    }
+
+    /**
+     * @param $estimatedJourney
+     * @return Response
+     */
+    private function prepareResponse($estimatedJourney): Response
+    {
+        $serializer = $this->buildSerializer();
+        $jsonContent = $serializer->serialize($estimatedJourney, 'json');
+        $response = new Response($jsonContent);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
 }

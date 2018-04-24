@@ -26,12 +26,12 @@ class JourneyPriceCalculator
     /**
      * @var int
      */
-    private $pricePerSecond = 0.25;
+    private $pricePerMinute = 8;
 
     /**
      * @var int
      */
-    private $pricePerMeter = 0.01;
+    private $pricePerKilometer = 5;
 
     /**
      * JourneyPriceCalculator constructor.
@@ -64,7 +64,7 @@ class JourneyPriceCalculator
     public function applyFormula(Route $route)
     {
         return $this->bookingFee +
-            $route->distance * $this->pricePerMeter +
-            $route->duration * $this->pricePerSecond;
+            $route->distance * $this->pricePerKilometer +
+            $route->duration * $this->pricePerMinute;
     }
 }
