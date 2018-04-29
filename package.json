@@ -12,6 +12,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.1.0",
     "bootstrap-vue": "^2.0.0-rc.6",
+    "pluralize-ru": "^1.0.1",
     "vue2-autocomplete-js": "^0.2.2"
   }
 }

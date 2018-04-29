@@ -3,6 +3,10 @@ import App from './components/app.vue';
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import './filters/MoneyFilter.js';
+import './filters/KilometerFilter.js';
+import './filters/TimeFilter.js';
+
 
 Vue.use(BootstrapVue);
 

@@ -4083,6 +4083,10 @@ pkg-up@^1.0.0:
   dependencies:
     find-up "^1.0.0"
 
+pluralize-ru@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/pluralize-ru/-/pluralize-ru-1.0.1.tgz#92c09ced46089b268a530fa895e6b9ec04fe7795"
+
 popper.js@^1.12.9:
   version "1.14.3"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.3.tgz#1438f98d046acf7b4d78cd502bf418ac64d4f095"

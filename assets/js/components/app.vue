@@ -39,15 +39,15 @@
                     <h5 class="card-title text-center">Ваша поездка:</h5>
                     <div class="text">
                         <span class="title">Стоимость: </span>
-                        <span>{{ journeyInfo.price }}</span>
+                        <span>{{ journeyInfo.price | roubleCurrency }}</span>
                     </div>
                     <div class="text">
                         <span class="title">Растояние: </span>
-                        <span>{{ journeyInfo.distance }}</span>
+                        <span>{{ journeyInfo.distance | kilometerFormat }} км</span>
                     </div>
                     <div class="text">
                         <span class="title">Примерное время: </span>
-                        <span>{{ journeyInfo.duration }}</span>
+                        <span>{{ journeyInfo.duration | timeFormat }} </span>
                     </div>
                 </div>
             </div>
