@@ -4,17 +4,29 @@ namespace App\Domain\Entity;
 
 use App\Domain\Service\JourneyPriceCalculator;
 use DateTimeImmutable;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="journeys")
+ */
 class Journey
 {
-    const CANCELED = "canceled";
-    const IN_SEARCH = "in_search";
-    const FIXED = "fixed";
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    const CANCELED   = "canceled";
+    const IN_SEARCH  = "in_search";
+    const FIXED      = "fixed";
     const PROCESSING = "processing";
-    const FINISHED = "finished";
+    const FINISHED   = "finished";
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=255)
      */
     private $status;
 
@@ -24,32 +36,38 @@ class Journey
      */
     private $cancelInitiator;
 
-    /**
-     * Driver
-     * @var
-     */
-    private $driver;
 
     /**
-     * @var
+     * @ORM\Column(type="decimal")
      */
     private $price;
 
     /**
-     * @var
+     * @ORM\Column(type="datetime")
      */
     private $startedAt;
 
     /**
-     * @var
+     * @ORM\Column(type="datetime")
      */
     private $finishedAt;
 
     /**
-     * @var Route[]|array
+     * @var Route[]
      */
     private $routes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Domain\Entity\Passenger", inversedBy="journeys")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $passenger;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Domain\Entity\Driver", inversedBy="journeys")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $driver;
 
     /**
      * Journey constructor.

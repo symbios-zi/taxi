@@ -51,6 +51,23 @@ class JourneyController extends Controller
     }
 
     /**
+     * @Route("/journey/order", name="journey-order")
+     * @param Request $request
+     * @return Response
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function order(Request $request): Response
+    {
+        $points = [
+            $request->get('from'),
+            $request->get('to'),
+        ];
+
+        $routes[] = $this->routePlanner->routeFor($points);
+        dump($routes); die();
+    }
+
+    /**
      * @return Serializer
      */
     public function buildSerializer(): Serializer

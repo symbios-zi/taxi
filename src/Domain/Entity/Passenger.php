@@ -2,18 +2,37 @@
 
 namespace App\Domain\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="passengers")
+ */
 class Passenger
 {
 
     /**
-     * @var string
+     * @ORM\Id
+     * @ORM\Column(name="id", type="guid")
+     * @ORM\GeneratedValue(strategy="UUID")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=255)
      */
     private $phone;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Domain\Entity\Journey", mappedBy="passenger")
+     */
+    private $journeys;
 
     /**
      * Passenger constructor.
@@ -24,27 +43,6 @@ class Passenger
     {
         $this->name = $name;
         $this->phone = $phone;
+        $this->journeys = new ArrayCollection();
     }
-
-    /**
-     * @param Location $point
-     * @param Location $destination
-     * @return Journey
-     */
-    public function requestJourney(Location $point, Location $destination)
-    {
-        return (new Journey($point, $destination));
-
-    }
-
-    /**
-     * @param Location $point
-     * @param Location $destination
-     */
-    public function orderJourney(Location $point, Location $destination)
-    {
-         (new Journey($point, $destination))->start();
-    }
-
-
 }

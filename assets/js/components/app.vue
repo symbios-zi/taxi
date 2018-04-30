@@ -1,3 +1,10 @@
+<style scoped>
+    .journey-info__submit {
+        margin-top: 20px;
+        display: block;
+    }
+</style>
+
 <template>
     <div class="row">
         <div class="col-4 offset-md-2">
@@ -34,7 +41,7 @@
             </div>
         </div>
         <div class="col-4">
-            <div class="card">
+            <div class="card journey-info__container">
                 <div class="card-body">
                     <h5 class="card-title text-center">Ваша поездка:</h5>
                     <div class="text">
@@ -48,6 +55,12 @@
                     <div class="text">
                         <span class="title">Примерное время: </span>
                         <span>{{ journeyInfo.duration | timeFormat }} </span>
+                    </div>
+                    <div class="text">
+                        <button
+                            class="journey-info__submit btn btn-primary mx-auto"
+                            v-on:click="orderJourney"
+                        >Заказать</button>
                     </div>
                 </div>
             </div>
@@ -82,7 +95,7 @@
                 this.route.to = place_id
             },
             requestJourneyInformation(route) {
-                var self = this;
+                let self = this;
                 const data = new FormData();
                 data.append('from', route.from);
                 data.append('to', route.to);
@@ -90,8 +103,20 @@
                 axios.post('/journey', data)
                     .then(function (response) {
                         self.journeyInfo = response.data;
-                    }).then(function () {
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            orderJourney() {
+                let self = this;
+                const data = new FormData();
+                data.append('from', this.route.from);
+                data.append('to', this.route.to);
 
+                axios.post('/journey/order', data)
+                    .then(function (response) {
+                        self.orderResult = response.data;
                     })
                     .catch(function (error) {
                         console.log(error);
